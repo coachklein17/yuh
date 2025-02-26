@@ -1,68 +1,187 @@
-/* Basic styling for the finance tracker */
-body {
-    font-family: Arial, sans-serif;
+/* Reset some default styling */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FF6F61, #D83F87);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
+    padding: 0 20px;
 }
 
-main {
-    padding: 20px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
+/* Header Style */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 60px 20px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+/* Finance Tracker Form */
 .finance-tracker {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px;
+    margin: 40px 0;
+}
+
+.finance-tracker h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #FFCC00;
 }
 
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 15px;
 }
 
 form input,
 form select,
 form button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input:focus,
+form select:focus,
+form button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
 form button {
-    grid-column: span 2;
-    background-color: #28a745;
-    color: white;
+    background-color: #FFCC00;
+    color: #333;
+    font-weight: bold;
     cursor: pointer;
+    grid-column: span 2;
+    transition: all 0.3s ease;
 }
 
 form button:hover {
-    background-color: #218838;
+    background-color: #FF8C00;
 }
 
+/* Transaction List */
 #transaction-list {
-    margin-top: 20px;
+    margin-top: 30px;
+    list-style: none;
+    padding: 0;
 }
 
 #transaction-list li {
-    margin-bottom: 10px;
+    background-color: #333;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+#transaction-list li span {
+    font-weight: bold;
+    color: #FFCC00;
+}
+
+/* Balance Display */
+#balance {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FF6F61;
+}
+
+/* Pie Chart Styling */
 canvas {
-    max-width: 100%;
-    height: 300px;
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
     margin-top: 30px;
+    border-radius: 12px;
+    background-color: #2C3E50;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 1rem;
+    color: #f1f1f1;
+    margin-top: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+footer p {
+    padding: 10px;
+    border-top: 1px solid #333;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.finance-tracker,
+#balance,
+#transaction-list li {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .finance-tracker {
+        padding: 20px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    #balance {
+        font-size: 2rem;
+    }
 }
