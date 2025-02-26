@@ -66,6 +66,13 @@ canvas {
     max-width: 600px;
 }
 
+.chart-container {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
