@@ -1,20 +1,7 @@
 let balance = 0;
 const transactions = [];
-let expenseChart = null; // Store the chart instance
 
-// Load saved transactions from local storage when the page is loaded
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
-    transactions.push(...savedTransactions);
-    updateBalance();
-    updateTransactionList();
-    updateChart();
-});
-
-// Function to add a new transaction
-function addTransaction(event) {
-    event.preventDefault();
-
+function addTransaction() {
     const description = document.getElementById("description").value;
     const amount = parseFloat(document.getElementById("amount").value);
     const type = document.getElementById("type").value;
@@ -27,19 +14,12 @@ function addTransaction(event) {
 
     const transaction = { description, amount, type, category };
     transactions.push(transaction);
-
-    // Save to local storage
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-
+    
     updateBalance();
     updateTransactionList();
     updateChart();
-
-    // Reset the form
-    document.getElementById("transaction-form").reset();
 }
 
-// Update the balance based on the transactions
 function updateBalance() {
     balance = transactions.reduce((total, t) => {
         return t.type === "income" ? total + t.amount : total - t.amount;
@@ -48,7 +28,6 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
-// Update the list of transactions
 function updateTransactionList() {
     const list = document.getElementById("transaction-list");
     list.innerHTML = "";
@@ -59,7 +38,6 @@ function updateTransactionList() {
     });
 }
 
-// Update the expense chart
 function updateChart() {
     const categories = {};
     transactions.forEach(t => {
@@ -69,36 +47,15 @@ function updateChart() {
     });
 
     const ctx = document.getElementById("expenseChart").getContext("2d");
-
-    // Destroy existing chart before creating a new one
-    if (expenseChart) {
-        expenseChart.destroy();
-    }
-
-    expenseChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: "pie",
         data: {
             labels: Object.keys(categories),
             datasets: [{
                 label: "Expenses",
                 data: Object.values(categories),
-                backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4bc0c0", "#9966ff"]
+                backgroundColor: ["red", "blue", "green", "orange", "purple"]
             }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': $' + tooltipItem.raw.toFixed(2);
-                        }
-                    }
-                }
-            }
         }
     });
 }
