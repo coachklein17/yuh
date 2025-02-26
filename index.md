@@ -1,30 +1,45 @@
 ---
 layout: default
-title: Personal Finance Tracker
+title: Cool Finance Tracker
 ---
 
-<h1>Personal Finance Tracker</h1>
-<h2>Balance: $<span id="balance">0.00</span></h2>
+# Cool Finance Tracker
 
-<div class="transaction-form">
-    <input type="text" id="description" placeholder="Description">
-    <input type="number" id="amount" placeholder="Amount">
-    <select id="category">
-        <option value="Food">Food</option>
-        <option value="Bills">Bills</option>
-        <option value="Salary">Salary</option>
-        <option value="Entertainment">Entertainment</option>
-        <option value="Other">Other</option>
-    </select>
-    <select id="type">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-    </select>
-    <button onclick="addTransaction()">Add</button>
-</div>
+Welcome to the **Cool Finance Tracker**, where you can easily track your income and expenses, view your balance, and analyze your spending habits with interactive charts.
 
-<h3>Transaction History</h3>
-<ul id="transaction-list"></ul>
+## Add a New Transaction
 
+Use the form below to add a new transaction:
 
-<script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+<form id="transaction-form">
+  <input type="text" id="description" placeholder="Transaction Description" required>
+  <input type="number" id="amount" placeholder="Amount" required>
+  <select id="type" required>
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+  <select id="category" required>
+    <option value="food">Food</option>
+    <option value="transport">Transport</option>
+    <option value="entertainment">Entertainment</option>
+    <option value="other">Other</option>
+  </select>
+  <button type="submit">Add Transaction</button>
+</form>
+
+## Your Balance
+
+<p id="balance">$0.00</p>
+
+## Transaction History
+
+<ul id="transaction-list">
+  <!-- Transaction list will populate here -->
+</ul>
+
+## Expense Distribution
+
+<canvas id="expenseChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/assets/js/app.js"></script>
