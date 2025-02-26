@@ -25,8 +25,3 @@ title: Personal Finance Tracker
 
 <h3>Transaction History</h3>
 <ul id="transaction-list"></ul>
-
-<h3>Spending Insights</h3>
-<canvas id="expenseChart" width="400" height="400"></canvas>
-
-<script src="{{ '/assets/js/script.js' | relative_url }}"></script>
