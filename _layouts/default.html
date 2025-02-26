@@ -4,12 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <!-- Link to the classy CSS design -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- Optionally include any other meta tags or external resources here -->
 </head>
 <body>
-    <div class="container">
+    <header>
+        <h1>Finance Tracker</h1>
+    </header>
+
+    <main>
         {{ content }}
-    </div>
+
+        <!-- Finance Tracker Form and Content -->
+        <div class="finance-tracker">
+            <h3>Balance: $<span id="balance">0.00</span></h3>
+
+            <form id="transaction-form" onsubmit="addTransaction(event)">
+                <label for="description">Description:</label>
+                <input type="text" id="description" required />
+
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" step="0.01" required />
+
+                <label for="type">Type:</label>
+                <select id="type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <label for="category">Category:</label>
+                <input type="text" id="category" required />
+
+                <button type="submit">Add Transaction</button>
+            </form>
+
+            <ul id="transaction-list"></ul>
+
+            <!-- Chart to display expenses -->
+            <canvas id="expenseChart"></canvas>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Finance Tracker</p>
+    </footer>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom JavaScript for Finance Tracker -->
+    <script src="/assets/js/transactions.js"></script>
 </body>
 </html>
