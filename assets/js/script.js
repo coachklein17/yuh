@@ -1,5 +1,15 @@
 let balance = 0;
 const transactions = [];
+let expenseChart = null; // Store the chart instance
+
+// Load saved transactions from local storage
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    transactions.push(...savedTransactions);
+    updateBalance();
+    updateTransactionList();
+    updateChart();
+});
 
 function addTransaction() {
     const description = document.getElementById("description").value;
@@ -14,7 +24,10 @@ function addTransaction() {
 
     const transaction = { description, amount, type, category };
     transactions.push(transaction);
-    
+
+    // Save to local storage
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
     updateBalance();
     updateTransactionList();
     updateChart();
@@ -47,14 +60,20 @@ function updateChart() {
     });
 
     const ctx = document.getElementById("expenseChart").getContext("2d");
-    new Chart(ctx, {
+
+    // Destroy existing chart before creating a new one
+    if (expenseChart) {
+        expenseChart.destroy();
+    }
+
+    expenseChart = new Chart(ctx, {
         type: "pie",
         data: {
             labels: Object.keys(categories),
             datasets: [{
                 label: "Expenses",
                 data: Object.values(categories),
-                backgroundColor: ["red", "blue", "green", "orange", "purple"]
+                backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4bc0c0", "#9966ff"]
             }]
         }
     });
