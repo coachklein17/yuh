@@ -2,7 +2,7 @@ let balance = 0;
 const transactions = [];
 let expenseChart = null; // Store the chart instance
 
-// Load saved transactions from local storage
+// Load saved transactions from local storage when the page is loaded
 document.addEventListener("DOMContentLoaded", () => {
     const savedTransactions = JSON.parse(localStorage.getItem("transactions")) || [];
     transactions.push(...savedTransactions);
@@ -25,7 +25,7 @@ function addTransaction() {
     const transaction = { description, amount, type, category };
     transactions.push(transaction);
 
-    // Save to local storage
+    // Save the transaction list to local storage
     localStorage.setItem("transactions", JSON.stringify(transactions));
 
     updateBalance();
@@ -75,6 +75,21 @@ function updateChart() {
                 data: Object.values(categories),
                 backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4bc0c0", "#9966ff"]
             }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': $' + tooltipItem.raw.toFixed(2);
+                        }
+                    }
+                }
+            }
         }
     });
 }
