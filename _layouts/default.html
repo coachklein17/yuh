@@ -3,60 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Finance Tracker</title>
-    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- Link to your CSS -->
+    <title>{{ page.title }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-
-    <header class="header">
-        <div class="container">
-            <h1>Cool Finance Tracker</h1>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <div class="container">
-            <section class="form-section">
-                <h2>Add New Transaction</h2>
-                <form id="transaction-form">
-                    <input type="text" id="description" placeholder="Transaction Description" required>
-                    <input type="number" id="amount" placeholder="Amount" required>
-                    <select id="type" required>
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
-                    <select id="category" required>
-                        <option value="food">Food</option>
-                        <option value="transport">Transport</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <button type="submit">Add Transaction</button>
-                </form>
-            </section>
-
-            <section class="balance-section">
-                <h2>Your Balance</h2>
-                <p id="balance">$0.00</p>
-            </section>
-
-            <section class="transactions-section">
-                <h2>Transaction History</h2>
-                <ul id="transaction-list"></ul>
-            </section>
-
-            <section class="chart-section">
-                <h2>Expense Distribution</h2>
-                <canvas id="expenseChart"></canvas>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <p>Cool Finance Tracker © 2025</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js Library -->
-    <script src="/assets/js/app.js"></script> <!-- Link to your JS -->
+    <div class="container">
+        {{ content }}
+    </div>
 </body>
 </html>
