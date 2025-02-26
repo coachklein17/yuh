@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateChart();
 });
 
-function addTransaction() {
+// Function to add a new transaction
+function addTransaction(event) {
+    event.preventDefault();
+
     const description = document.getElementById("description").value;
     const amount = parseFloat(document.getElementById("amount").value);
     const type = document.getElementById("type").value;
@@ -25,14 +28,18 @@ function addTransaction() {
     const transaction = { description, amount, type, category };
     transactions.push(transaction);
 
-    // Save the transaction list to local storage
+    // Save to local storage
     localStorage.setItem("transactions", JSON.stringify(transactions));
 
     updateBalance();
     updateTransactionList();
     updateChart();
+
+    // Reset the form
+    document.getElementById("transaction-form").reset();
 }
 
+// Update the balance based on the transactions
 function updateBalance() {
     balance = transactions.reduce((total, t) => {
         return t.type === "income" ? total + t.amount : total - t.amount;
@@ -41,6 +48,7 @@ function updateBalance() {
     document.getElementById("balance").innerText = balance.toFixed(2);
 }
 
+// Update the list of transactions
 function updateTransactionList() {
     const list = document.getElementById("transaction-list");
     list.innerHTML = "";
@@ -51,6 +59,7 @@ function updateTransactionList() {
     });
 }
 
+// Update the expense chart
 function updateChart() {
     const categories = {};
     transactions.forEach(t => {
