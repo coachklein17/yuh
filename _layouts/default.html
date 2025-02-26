@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-
-    <!-- Link to the classy CSS design -->
-    <link rel="stylesheet" href="/assets/css/styles.css">
-
-    <!-- Optionally include any other meta tags or external resources here -->
+    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- Link to custom CSS -->
 </head>
 <body>
     <header>
@@ -18,7 +14,7 @@
     <main>
         {{ content }}
 
-        <!-- Finance Tracker Form and Content -->
+        <!-- Finance Tracker Form -->
         <div class="finance-tracker">
             <h3>Balance: $<span id="balance">0.00</span></h3>
 
@@ -52,7 +48,7 @@
         <p>&copy; 2025 Finance Tracker</p>
     </footer>
 
-    <!-- Include Chart.js -->
+    <!-- Add Chart.js via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom JavaScript for Finance Tracker -->
